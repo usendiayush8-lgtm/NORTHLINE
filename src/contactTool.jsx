@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import "./ContactTool.css";
+import "./contactTool.css";
 
 
 export default function ContactTools() {
