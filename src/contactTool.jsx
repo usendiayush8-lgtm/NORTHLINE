@@ -2,166 +2,96 @@
 import { useState } from "react";
 import "./contactTool.css";
 
-
 export default function ContactTools() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [message, setMessage] = useState("");
+  const [isOpen, setIsOpen] = useState(true);
 
-  // Replace these with your actual details
   const whatsappNumber = "919876543210";
-  const instagramURL = "https://www.instagram.com/YOUR_USERNAME/";
-  const facebookURL = "https://www.facebook.com/YOUR_PAGE/";
 
-  const [messages, setMessages] = useState([
+  const socialLinks = [
     {
-      sender: "bot",
-      text: "Hello! 👋 Welcome to Northline. How can I help you?"
-    }
-  ]);
-
-  function sendMessage(text = message) {
-    if (!text.trim()) return;
-
-    setMessages((prev) => [
-      ...prev,
-      { sender: "user", text },
-      {
-        sender: "bot",
-        text: getReply(text)
-      }
-    ]);
-
-    setMessage("");
-  }
-
-  function getReply(text) {
-    const value = text.toLowerCase();
-
-    if (value.includes("price") || value.includes("cost")) {
-      return "Website pricing depends on your requirements. Contact us on WhatsApp for a custom quote.";
-    }
-
-    if (value.includes("time") || value.includes("long")) {
-      return "A basic website may take around 1–2 weeks. Larger projects can take longer.";
-    }
-
-    if (value.includes("service")) {
-      return "We offer Website Design, Web Development, E-commerce and Website Redesign.";
-    }
-
-    return "Thanks for contacting Northline! Tell us about your project, and our team will help you.";
-  }
+      name: "YouTube",
+      icon: "bi-youtube",
+      url: "https://www.youtube.com/",
+      color: "#ffb6b6",
+    },
+    {
+      name: "Instagram",
+      icon: "bi-instagram",
+      url: "https://www.instagram.com/",
+      color: "#fff0ad",
+    },
+    {
+      name: "Facebook",
+      icon: "bi-facebook",
+      url: "https://www.facebook.com/",
+      color: "#b9c5ff",
+    },
+    {
+      name: "Behance",
+      icon: "bi-behance",
+      url: "https://www.behance.net/",
+      color: "#f5a9eb",
+    },
+  ];
 
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    "Hello Northline! I am interested in creating a website."
+    "Hello Northline! I am interested in your services."
   )}`;
 
   return (
-    <>
-      {/* Social media buttons */}
-      <div className="social-buttons">
+    <div className="northline-contact">
 
-        <a
-          href={whatsappLink}
-          target="_blank"
-          rel="noreferrer"
-          className="social-btn whatsapp"
-          aria-label="WhatsApp"
-        >
-          <i className="bi bi-whatsapp"></i>
-        </a>
-
-        <a
-          href={instagramURL}
-          target="_blank"
-          rel="noreferrer"
-          className="social-btn instagram"
-          aria-label="Instagram"
-        >
-          <i className="bi bi-instagram"></i>
-        </a>
-
-        <a
-          href={facebookURL}
-          target="_blank"
-          rel="noreferrer"
-          className="social-btn facebook"
-          aria-label="Facebook"
-        >
-          <i className="bi bi-facebook"></i>
-        </a>
-
-      </div>
-
-      {/* AI Chatbot */}
+      {/* SOCIAL ICONS AND CLOSE BUTTON */}
       {isOpen && (
-        <div className="chatbot">
+        <div className="northline-social-list show">
 
-          <div className="chat-header">
-            <div>
-              <h3>Northline Assistant</h3>
-              <span>● Online</span>
-            </div>
+          {socialLinks.map((social) => (
+            <a
+              key={social.name}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="northline-social-icon"
+              aria-label={social.name}
+              style={{ backgroundColor: social.color }}
+            >
+              <i className={`bi ${social.icon}`}></i>
+            </a>
+          ))}
 
-            <button onClick={() => setIsOpen(false)}>
-              ×
-            </button>
-          </div>
-
-          <div className="chat-messages">
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`chat-message ${msg.sender}`}
-              >
-                {msg.text}
-              </div>
-            ))}
-          </div>
-
-          <div className="quick-questions">
-            <button onClick={() => sendMessage("What services do you offer?")}>
-              Services
-            </button>
-
-            <button onClick={() => sendMessage("What is your website pricing?")}>
-              Pricing
-            </button>
-
-            <button onClick={() => sendMessage("How long does it take?")}>
-              Timeline
-            </button>
-          </div>
-
-          <form
-            className="chat-input"
-            onSubmit={(e) => {
-              e.preventDefault();
-              sendMessage();
-            }}
+          <button
+            className="northline-close"
+            onClick={() => setIsOpen(false)}
+            aria-label="Close social menu"
           >
-            <input
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="Ask something..."
-            />
-
-            <button type="submit">
-              <i className="bi bi-send-fill"></i>
-            </button>
-          </form>
+            <i className="bi bi-x-lg"></i>
+          </button>
 
         </div>
       )}
 
-      {/* Floating chatbot button */}
-      <button
-        className="chat-toggle"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Open AI chatbot"
+      {/* SHARE BUTTON - VISIBLE AFTER CLOSING */}
+      {!isOpen && (
+        <button
+          className="northline-open"
+          onClick={() => setIsOpen(true)}
+          aria-label="Open social menu"
+        >
+          <i className="bi bi-share-fill"></i>
+        </button>
+      )}
+
+      {/* WHATSAPP BUTTON - ALWAYS VISIBLE */}
+      <a
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="northline-whatsapp"
       >
-        <i className={isOpen ? "bi bi-x-lg" : "bi bi-chat-dots-fill"}></i>
-      </button>
-    </>
+        <span>Call Us Now</span>
+        <i className="bi bi-whatsapp"></i>
+      </a>
+
+    </div>
   );
 }

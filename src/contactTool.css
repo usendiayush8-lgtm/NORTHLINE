@@ -1,87 +1,66 @@
 
-/* =====================================
-   NORTHLINE PREMIUM BUTTON ANIMATIONS
-===================================== */
-
-/* Social buttons entrance */
-.social-buttons .social-btn {
-  opacity: 0;
-  animation: northlineReveal 0.8s ease-out forwards;
+.northline-contact {
+  position: fixed;
+  top: 75%;
+  right: 22px;
+  transform: translateY(-50%);
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
 }
 
-.social-buttons .social-btn:nth-child(1) {
-  animation-delay: 0.2s;
+.northline-social-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
-.social-buttons .social-btn:nth-child(2) {
-  animation-delay: 0.4s;
+.northline-social-icon,
+.northline-close,
+.northline-open {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
 }
 
-.social-buttons .social-btn:nth-child(3) {
-  animation-delay: 0.6s;
+.northline-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+  font-size: 27px;
+  text-decoration: none;
 }
 
-/* Entrance movement */
-@keyframes northlineReveal {
-  0% {
-    opacity: 0;
-    transform: translateX(40px) scale(0.75);
-  }
-
-  70% {
-    opacity: 1;
-    transform: translateX(-5px) scale(1.05);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
+.northline-close,
+.northline-open {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #a7a7a7;
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
 }
 
-/* Chatbot entrance */
-.chat-toggle {
-  opacity: 0;
-  animation: chatbotReveal 0.8s 0.8s ease-out forwards;
+.northline-whatsapp {
+  width: 255px;
+  height: 65px;
+  padding: 10px 19px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #b5ffb5;
+  color: #171717;
+  text-decoration: none;
+  font-size: 19px;
 }
 
-@keyframes chatbotReveal {
-  from {
-    opacity: 0;
-    scale: 0.7;
-  }
-
-  to {
-    opacity: 1;
-    scale: 1;
-  }
-}
-
-/* Premium hover effect */
-.social-btn:hover,
-.chat-toggle:hover {
-  filter: brightness(1.15);
-  box-shadow:
-    0 0 15px rgba(214, 179, 111, 0.45),
-    0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-/* Icon animation */
-.social-btn i,
-.chat-toggle i {
-  transition: transform 0.35s ease;
-}
-
-.social-btn:hover i,
-.chat-toggle:hover i {
-  transform: scale(1.2) rotate(-8deg);
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .social-buttons .social-btn,
-  .chat-toggle {
-    animation: none;
-    opacity: 1;
-  }
+.northline-whatsapp i {
+  font-size: 30px;
 }
