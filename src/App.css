@@ -579,7 +579,6 @@ section {
 }
 
 .service-card {
-  min-height: 270px;
   padding: 30px;
   background: linear-gradient(145deg, #142b44, #0b1c30);
   border: 1px solid #263d57;
