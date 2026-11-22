@@ -5,7 +5,7 @@ import "./contactTool.css";
 export default function ContactTools() {
   const [isOpen, setIsOpen] = useState(true);
 
-  const whatsappNumber = "919876543210";
+  const whatsappNumber = "7588494856";
 
   const socialLinks = [
     {
